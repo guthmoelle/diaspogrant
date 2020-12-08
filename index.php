@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php 
+    session_start();
+    if (isset($_SESSION['ENVOI'])) {
+		$ENVOI = $_SESSION['ENVOI'];
+	}else{
+        $ENVOI = "Null";
+        //$ENVOI = "0";
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -49,8 +57,8 @@
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
-                <div class="masthead-subheading">Bienvenu sur votre plateforme</div>
-                <div class="masthead-subheading text-uppercase">Soutenez l'investissement au pays</div>
+                <div class="masthead-subheading">Bienvenu sur la plateforme</div>
+                <div class="masthead-subheading text-uppercase">Du Soutien de l'investissement au pays</div>
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#contact" >Contactez-nous</a>	<!-- href="https://www.linkedin.com/" target="_blank" Connectez-vous -->
             </div>
         </header>
@@ -240,8 +248,10 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <?php if($_SESSION['ENVOI'] == 1) { ?>
-                        <!-- id="success" --><div class="alert-success" >  Votre message a été envoyé. </div>
+                        <?php if($ENVOI == 1) { ?>
+                        <!-- id="success" --><div class="alert alert-success mb-5" style="height: 50px;" role="alert">  Votre message a été envoyé. </div>
+                        <?php }elseif($ENVOI == "Null"){ ?>
+                            <div class="mb-5" > </div>
                         <?php } ?>
                         <input type="submit" class="btn btn-primary btn-xl text-uppercase" name="sendMessageButton" id="sendMessageButton" style="border: none;" value="Envoyez le Message"/> 
                         <!-- <button class="btn btn-primary btn-xl text-uppercase" name="sendMessageButton" id="sendMessageButton" type="submit">Envoyez le Message</button> -->
